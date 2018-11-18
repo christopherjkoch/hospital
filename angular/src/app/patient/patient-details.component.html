@@ -1,0 +1,99 @@
+<div class="mat-app-background basic-container">
+
+  <mat-toolbar>
+    <span>Patient Details</span>
+  </mat-toolbar>
+
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+
+  <form [formGroup]="patientForm" (ngSubmit)="submit(patientForm)" novalidate>
+
+    <div class="form">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="First Name" formControlName="firstName" maxlength="50">
+        <mat-error *ngIf="!patientForm.controls['firstName'].valid && patientForm.controls['firstName'].touched">
+          {{ getErrorFirstName() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Last Name" formControlName="lastName" maxlength="50">
+        <mat-error *ngIf="!patientForm.controls['lastName'].valid && patientForm.controls['lastName'].touched">
+          {{ getErrorLastName() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Town" formControlName="town" maxlength="50">
+        <mat-error *ngIf="!patientForm.controls['town'].valid && patientForm.controls['town'].touched">
+          {{ getErrorTown() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Temperature" formControlName="temperature" maxlength="5">
+        <mat-error *ngIf="!patientForm.controls['temperature'].valid && patientForm.controls['temperature'].touched">
+          {{ getErrorFirstTemperature() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Pulse" formControlName="pulse" maxlength="3">
+        <mat-error *ngIf="!patientForm.controls['pulse'].valid && patientForm.controls['pulse'].touched">
+          {{ getErrorFirstPulse() }}
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div class="card-container">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Medications</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <mat-table [dataSource]="data" matSort matSortDisableClear class="mat-elevation-z8">
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Medication</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.Name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Dose">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Dose</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.Dose}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="StartDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>StartDate</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.StartDate | date: 'shortDate'}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="StopDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>StopDate</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.StopDate | date: 'shortDate'}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!patientForm.valid">Save</button>
+      <span class="button-pad" ></span>
+      <button mat-raised-button color="primary" class="button" (click)="back($event)">Back</button>
+    </div>
+
+  </form>
+
+
+
+
+
+
+
+  <mat-error *ngIf="errorMessage != null">{{ errorMessage }}</mat-error>
+</div>

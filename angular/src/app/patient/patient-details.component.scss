@@ -1,0 +1,39 @@
+@import '../theme';
+ 
+mat-table {
+    width: 100%;
+    
+  }
+
+  .card-container  {
+    padding-bottom: 30px;
+  }
+ 
+ 
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+ 
+  .basic-container {
+    padding: 30px;
+  }
+
+  .error-message {
+    padding-top: 30px;
+  }
+ 
+  .form-element {
+    padding: 5px 0px 25px 2px;
+    width: 100%;
+  }
+
+  .form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .button-pad {
+    padding-left: 10px
+  }

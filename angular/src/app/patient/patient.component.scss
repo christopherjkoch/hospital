@@ -1,0 +1,32 @@
+@import '../theme';
+ 
+mat-table {
+    width: 100%;    
+  }
+
+  .table-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+ 
+  .example-icon {
+    padding: 0 14px;
+  }
+ 
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+ 
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+ 
+  .basic-container {
+    padding: 30px;
+  }
+
+  // .error-message {
+  //   padding-top: 30px;
+  // }
+ 

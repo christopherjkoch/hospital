@@ -1,0 +1,43 @@
+<div class="mat-app-background basic-container">
+        
+    <mat-toolbar>
+      <span>Patients</span>
+    </mat-toolbar>
+
+    <div class="spinner-container" *ngIf="loading">
+      <mat-spinner color="warn"></mat-spinner>
+    </div>
+   
+    <div class="table-container">
+   
+      <mat-table [dataSource]="data" matSort matSortDisableClear class="mat-elevation-z8">
+        <ng-container matColumnDef="FirstName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.FirstName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="LastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.LastName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Town">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Town</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.Town}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Temperature">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Temperature</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.Temperature}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Pulse">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Pulse</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.Pulse}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: visibleColumns;" [routerLink]="['/details', row.Id]"></mat-row>
+      </mat-table>
+   
+    </div>    
+
+    <mat-error class="error-message" *ngIf="errorMessage != null">{{ errorMessage }}</mat-error>
+   
+  </div>
